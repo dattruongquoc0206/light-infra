@@ -3,6 +3,7 @@ name: Provision GKE Cluster
 on:
   push:
     branches: [main]
+  workflow_dispatch:
 
 jobs:
   terraform:
