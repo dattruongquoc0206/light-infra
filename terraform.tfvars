@@ -1,4 +1,4 @@
-project_id       = "your-gcp-project-id"
+project_id       = "light-466908"
 region           = "asia-southeast1"
-cluster_name     = "my-fastapi-cluster"
+cluster_name     = "light-cluster"
 credentials_file = "gcp-creds.json"
