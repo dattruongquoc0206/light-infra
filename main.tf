@@ -12,6 +12,9 @@ resource "google_container_cluster" "primary" {
 
   network    = "default"
   subnetwork = "default"
+  lifecycle {
+    ignore_changes = [initial_node_count]
+  }
 }
 
 resource "google_container_node_pool" "primary_nodes" {
