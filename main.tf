@@ -14,8 +14,7 @@ resource "google_container_cluster" "primary" {
   network    = "default"
   subnetwork = "default"
   node_config {
-    disk_size_gb = 10
-    disk_type    = "pd-standard"
+    disk_size_gb = 70
     machine_type = "e2-medium"
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
