@@ -20,6 +20,7 @@ resource "google_container_cluster" "primary" {
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
+    }
 }
 
 resource "google_container_node_pool" "primary_nodes" {
