@@ -29,9 +29,9 @@ jobs:
 
     - name: Write Kubeconfig to file
       run: echo "${KUBERCONFIG}" > kubeconfig.yaml
-      
+
     - name: Install gke-gcloud-auth-plugin
-      run: gcloud components install gke-gcloud-auth-plugin
+      run: sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
     
     - name: Terraform Init
       run: terraform init
