@@ -1,3 +1,4 @@
+/*
 provider "google" {
   project = var.project_id
   region  = var.region
@@ -25,22 +26,4 @@ resource "google_container_cluster" "primary" {
     ]
     }
 }
-/*
-resource "google_container_node_pool" "api" {
-  name       = "api-nodepool"
-  cluster    = google_container_cluster.primary.name
-  location   = var.region
-
-  node_count = var.node_count
-
-  node_config {
-    preemptible  = false
-    machine_type = "e2-medium"
-    disk_size_gb = 10
-    disk_type = "pd_standard"
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
-}
-*/
+*/ 
