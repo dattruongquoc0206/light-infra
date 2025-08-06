@@ -14,7 +14,7 @@ resource "google_container_cluster" "primary" {
 
   network    = "default"
   subnetwork = "default"
-  /*
+  /* from second apply node config will cause cluster detroy
   node_config {
   disk_size_gb = 70
 

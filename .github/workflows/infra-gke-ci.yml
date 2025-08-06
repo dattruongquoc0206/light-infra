@@ -9,9 +9,11 @@ jobs:
   terraform:
     name: Apply Terraform
     runs-on: ubuntu-latest
-
+    #dump straight secrets to file can create wronng with echo so need dump secret to env first 
+    #teraform requires GCP credentials to be in a file
     env:
       GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+      KUBERCONFIG: ${{ secrets.KUBECONFIG }}
 
     steps:
     - name: Checkout repo
@@ -30,6 +32,9 @@ jobs:
 
     - name: Terraform Plan
       run: terraform plan -var-file="terraform.tfvars"
+    
+    - name: Write Kubeconfig to file
+      run: echo "${KUBERCONFIG}" > kubeconfig.yaml
 
     - name: Terraform Apply
       run: terraform apply -auto-approve -var-file="terraform.tfvars"
