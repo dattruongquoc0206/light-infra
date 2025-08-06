@@ -27,17 +27,14 @@ jobs:
     - name: Write GCP credentials to file
       run: echo "${GOOGLE_CREDENTIALS}" > gcp-creds.json
 
+    - name: Write Kubeconfig to file
+      run: echo "${KUBERCONFIG}" > kubeconfig.yaml
+    
     - name: Terraform Init
       run: terraform init
 
     - name: Terraform Plan
       run: terraform plan -var-file="terraform.tfvars"
     
-    - name: set up gke-gcloud-auth-plugin
-      run: sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
-
-    - name: Write Kubeconfig to file
-      run: echo "${KUBERCONFIG}" > kubeconfig.yaml
-
     - name: Terraform Apply
       run: terraform apply -auto-approve -var-file="terraform.tfvars"
