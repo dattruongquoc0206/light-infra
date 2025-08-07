@@ -66,9 +66,7 @@ jobs:
 
         which gke-gcloud-auth-plugin
         echo "----which gke-gcloud-auth-plugin output"
-        cd ~/.config/gcloud/virtenv
-        bin/pip3 uninstall cffi -y
-        bin/pip3 install --no-binary :all: cffi --ignore-installed
+
 
     
     - name: Terraform Init
