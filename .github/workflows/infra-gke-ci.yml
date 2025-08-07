@@ -43,7 +43,7 @@ jobs:
 
         echo "----Installed gke-gcloud-auth-plugin"
         gke-gcloud-auth-plugin --version
-        echo "----gke-gcloud-auth-plugin version""
+        echo "----gke-gcloud-auth-plugin version"
         cat -n kubeconfig.yaml
         echo "----Kubeconfig.yaml file content"
         mkdir -p ~/.kube
