@@ -34,12 +34,12 @@ jobs:
       run: |
         curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
         echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+        gke-gcloud-auth-plugin --version
         sudo apt-get update
-        echo "Installed apt-get update" 
-        sudo apt-get install -y google-cloud-cli 
-        echo "Installed google-cloud-cli"
+        echo "----Installed apt-get update" 
         sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
-        echo "Installed gke-gcloud-auth-plugin"
+        echo "----Installed gke-gcloud-auth-plugin"\
+        gke-gcloud-auth-plugin --version
     
     - name: Terraform Init
       run: terraform init
