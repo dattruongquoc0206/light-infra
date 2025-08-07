@@ -52,7 +52,7 @@ jobs:
         cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
         echo "----~/.kube/config file content"
-        
+
         echo "----Copied kubeconfig to ~/.kube/config"
         export KUBECONFIG=~/.kube/config
         echo ${KUBECONFIG}
@@ -64,6 +64,8 @@ jobs:
         kubectl config view --minify --raw
         echo "----kubectl config view --minify --raw output"
 
+        which gke-gcloud-auth-plugin
+        echo "----which gke-gcloud-auth-plugin output"
 
     
     - name: Terraform Init
