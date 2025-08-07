@@ -46,6 +46,8 @@ jobs:
         kubectl config view
         echo $KUBECONFIG
         cat -n kubeconfig.yaml
+        cat ~/.kube/config
+
     
     - name: Terraform Init
       run: terraform init
