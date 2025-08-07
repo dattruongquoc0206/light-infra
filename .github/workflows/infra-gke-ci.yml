@@ -49,6 +49,9 @@ jobs:
         mkdir -p ~/.kube
         cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
+        export KUBECONFIG=~/.kube/config
+        kubectl config view --minify --raw
+
 
     
     - name: Terraform Init
