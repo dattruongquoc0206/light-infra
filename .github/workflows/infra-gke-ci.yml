@@ -46,6 +46,8 @@ jobs:
         kubectl config view
         echo $KUBECONFIG
         cat -n kubeconfig.yaml
+        mkdir -p ~/.kube
+        cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
 
     
