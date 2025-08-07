@@ -30,42 +30,44 @@ jobs:
     - name: Write Kubeconfig to file
       run: echo "${KUBERCONFIG}" > kubeconfig.yaml
 
-    - name: Install gke-gcloud-auth-pgilugin
-      run: |
-        curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
-        echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
-        echo "----Added google-cloud-sdk to apt sources list"
-        sudo apt-get update
-        echo "----Installed apt-get update" 
-        sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
-        # gcloud auth application-default login
-        gcloud config set container/use_application_default_credentials true
-        echo "----Installed gke-gcloud-auth-plugin"
+    # - name: Install gke-gcloud-auth-pgilugin
+    #   run: |
+    #     curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg
+    #     echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" | sudo tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+    #     echo "----Added google-cloud-sdk to apt sources list"
+    #     sudo apt-get update
+    #     echo "----Installed apt-get update" 
+    #     sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
+    #     gcloud components update
+
+    #     # gcloud auth application-default login
+    #     gcloud config set container/use_application_default_credentials true
+    #     echo "----Installed gke-gcloud-auth-plugin"
         
-        gke-gcloud-auth-plugin --version
-        echo "----gke-gcloud-auth-plugin version"
+    #     gke-gcloud-auth-plugin --version
+    #     echo "----gke-gcloud-auth-plugin version"
         
-        cat -n kubeconfig.yaml
-        echo "----Kubeconfig.yaml file content"
+    #     cat -n kubeconfig.yaml
+    #     echo "----Kubeconfig.yaml file content"
         
-        mkdir -p ~/.kube
-        cp ./kubeconfig.yaml ~/.kube/config
-        cat ~/.kube/config
-        echo "----~/.kube/config file content"
+    #     mkdir -p ~/.kube
+    #     cp ./kubeconfig.yaml ~/.kube/config
+    #     cat ~/.kube/config
+    #     echo "----~/.kube/config file content"
 
-        echo "----Copied kubeconfig to ~/.kube/config"
-        export KUBECONFIG=~/.kube/config
-        echo ${KUBECONFIG}
-        echo "----Set KUBECONFIG environment variable"  
+    #     echo "----Copied kubeconfig to ~/.kube/config"
+    #     export KUBECONFIG=~/.kube/config
+    #     echo ${KUBECONFIG}
+    #     echo "----Set KUBECONFIG environment variable"  
 
-        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
-        echo "----Set USE_GKE_GCLOUD_AUTH_PLUGIN environment variable to True"
+    #     export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+    #     echo "----Set USE_GKE_GCLOUD_AUTH_PLUGIN environment variable to True"
 
-        kubectl config view --minify --raw
-        echo "----kubectl config view --minify --raw output"
+    #     kubectl config view --minify --raw
+    #     echo "----kubectl config view --minify --raw output"
 
-        which gke-gcloud-auth-plugin
-        echo "----which gke-gcloud-auth-plugin output"
+    #     which gke-gcloud-auth-plugin
+    #     echo "----which gke-gcloud-auth-plugin output"
 
 
     
