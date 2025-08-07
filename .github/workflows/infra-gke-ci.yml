@@ -52,10 +52,15 @@ jobs:
         cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
         echo "----~/.kube/config file content"
+        
         echo "----Copied kubeconfig to ~/.kube/config"
         export KUBECONFIG=~/.kube/config
         echo ${KUBECONFIG}
         echo "----Set KUBECONFIG environment variable"  
+
+        export USE_GKE_GCLOUD_AUTH_PLUGIN=True
+        echo "----Set USE_GKE_GCLOUD_AUTH_PLUGIN environment variable to True"
+
         kubectl config view --minify --raw
         echo "----kubectl config view --minify --raw output"
 
