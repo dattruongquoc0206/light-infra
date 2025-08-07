@@ -43,13 +43,15 @@ jobs:
 
         echo "----Installed gke-gcloud-auth-plugin"
         gke-gcloud-auth-plugin --version
-        kubectl config view
-        echo $KUBECONFIG
+        echo "----gke-gcloud-auth-plugin version""
         cat -n kubeconfig.yaml
+        echo "----Kubeconfig.yaml file content"
         mkdir -p ~/.kube
         cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
         export KUBECONFIG=~/.kube/config
+        echo ${KUBECONFIG}
+        echo "----Copied kubeconfig to ~/.kube/config"
         kubectl config view --minify --raw
 
 
