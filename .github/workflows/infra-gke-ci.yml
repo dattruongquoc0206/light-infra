@@ -36,7 +36,7 @@ jobs:
         echo "Installed apt-get update" 
         sudo apt-get install -y google-cloud-cli 
         echo "Installed google-cloud-cli"
-        gcloud components install gke-gcloud-auth-plugin
+        sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
         echo "Installed gke-gcloud-auth-plugin"
     
     - name: Terraform Init
