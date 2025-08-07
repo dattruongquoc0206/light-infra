@@ -43,6 +43,8 @@ jobs:
 
         echo "----Installed gke-gcloud-auth-plugin"
         gke-gcloud-auth-plugin --version
+        kubectl config view
+
     
     - name: Terraform Init
       run: terraform init
