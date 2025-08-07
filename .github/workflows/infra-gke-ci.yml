@@ -40,19 +40,24 @@ jobs:
         sudo apt-get install google-cloud-cli-gke-gcloud-auth-plugin
         # gcloud auth application-default login
         gcloud config set container/use_application_default_credentials true
-
         echo "----Installed gke-gcloud-auth-plugin"
+        
         gke-gcloud-auth-plugin --version
         echo "----gke-gcloud-auth-plugin version"
+        
         cat -n kubeconfig.yaml
         echo "----Kubeconfig.yaml file content"
+        
         mkdir -p ~/.kube
         cp ./kubeconfig.yaml ~/.kube/config
         cat ~/.kube/config
+        echo "----~/.kube/config file content"
+        echo "----Copied kubeconfig to ~/.kube/config"
         export KUBECONFIG=~/.kube/config
         echo ${KUBECONFIG}
-        echo "----Copied kubeconfig to ~/.kube/config"
+        echo "----Set KUBECONFIG environment variable"  
         kubectl config view --minify --raw
+        echo "----kubectl config view --minify --raw output"
 
 
     
