@@ -37,7 +37,7 @@ jobs:
         infisical run --env=prod -- \
           bash -c '
             # 1. Auth GCP bằng SA key lấy từ Infisical
-            gcloud auth activate-service-account --key-file=<(echo "$GCP_SA_KEY")
+            gcloud auth application-default activate-service-account --key-file=<(echo "$GCP_SA_KEY")
 
             # 2. Set project
             gcloud config set project "$GCP_PROJECT_ID"
@@ -48,9 +48,11 @@ jobs:
             # 4. Lấy kubeconfig cho GKE cluster
             echo "Fetching kubeconfig for GKE cluster..."
             gcloud container clusters get-credentials "light-cluster" --region "asia-southeast1"
+            
             # 5. check kubeconfig
             echo "Kubeconfig file content:"
             cat ~/.kube/config
+            
             # 6. Check kubectl
             echo "Checking kubectl configuration..."
             kubectl get ns
