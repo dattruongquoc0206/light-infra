@@ -96,6 +96,10 @@ jobs:
             # 5. check kubeconfig
             echo "Kubeconfig file content:"
             cat ~/.kube/config
+            # 6. Check kubectl
+            echo "Checking kubectl configuration..."
+            kubectl get ns
+
           '
       env:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
