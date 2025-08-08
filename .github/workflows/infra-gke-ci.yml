@@ -10,8 +10,8 @@ jobs:
     name: Apply Terraform
     runs-on: ubuntu-latest
 
-    env:
-      GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
+    # env:
+    #   GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -64,10 +64,10 @@ jobs:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
 
     - name: Terraform Init and plan
-      run: terraform init
+      run: gcloud terraform init
 
     - name: Terraform Plan
-      run: terraform plan -var-file="terraform.tfvars"
+      run: gcloud terraform plan -var-file="terraform.tfvars"
 
     - name: Terraform Apply
-      run: terraform apply -auto-approve -var-file="terraform.tfvars"
+      run: gcloud terraform apply -auto-approve -var-file="terraform.tfvars"
