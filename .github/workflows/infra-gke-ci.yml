@@ -70,15 +70,8 @@ jobs:
     #     echo "----which gke-gcloud-auth-plugin output"
 
 
-    - name: Install Infiscale CLI
-      run: |
-        curl -s https://api.github.com/repos/infracost/infracost/releases/latest \
-          | grep "browser_download_url.*infracost-linux-amd64" \
-          | cut -d : -f 2,3 \
-          | tr -d \" \
-          | wget -qi -
-        chmod +x infracost-linux-amd64
-        sudo mv infracost-linux-amd64 /usr/local/bin/infracost
+    - name: Install Infisical CLI
+      run: curl -sSfL https://infisical.com/install.sh | sh
     
     - name: Authenticate to GCP via Infisical & setup kubeconfig
       run: |
@@ -90,9 +83,9 @@ jobs:
             # 2. Set project
             gcloud config set project "$GCP_PROJECT_ID"
 
-            # 3. Set compute zone (nếu cần)
-            gcloud config set compute/zone "asia-southeast1"
-
+            # 3. Set region
+            gcloud config set compute/region "asia-southeast1"
+            
             # 4. Lấy kubeconfig cho GKE cluster
             gcloud container clusters get-credentials "ight-cluster" --region "asia-southeast1"
           '
