@@ -24,11 +24,11 @@ jobs:
       with:
         terraform_version: 1.6.6
 
-    - name: Write GCP credentials to file
-      run: echo "${GOOGLE_CREDENTIALS}" > gcp-creds.json
+    # - name: Write GCP credentials to file
+    #   run: echo "${GOOGLE_CREDENTIALS}" > gcp-creds.json
 
-    - name: Write Kubeconfig to file
-      run: echo "${KUBERCONFIG}" > kubeconfig.yaml
+    # - name: Write Kubeconfig to file
+    #   run: echo "${KUBERCONFIG}" > kubeconfig.yaml
 
     # - name: Install gke-gcloud-auth-pgilugin
     #   run: |
@@ -70,8 +70,37 @@ jobs:
     #     echo "----which gke-gcloud-auth-plugin output"
 
 
+    - name: Install Infiscale CLI
+      run: |
+        curl -s https://api.github.com/repos/infracost/infracost/releases/latest \
+          | grep "browser_download_url.*infracost-linux-amd64" \
+          | cut -d : -f 2,3 \
+          | tr -d \" \
+          | wget -qi -
+        chmod +x infracost-linux-amd64
+        sudo mv infracost-linux-amd64 /usr/local/bin/infracost
     
-    - name: Terraform Init
+    - name: Authenticate to GCP via Infisical & setup kubeconfig
+      run: |
+        infisical run --env=prod -- \
+          bash -c '
+            # 1. Auth GCP bằng SA key lấy từ Infisical
+            gcloud auth activate-service-account --key-file=<(echo "$GCP_SA_KEY")
+
+            # 2. Set project
+            gcloud config set project "$GCP_PROJECT_ID"
+
+            # 3. Set compute zone (nếu cần)
+            gcloud config set compute/zone "asia-southeast1"
+
+            # 4. Lấy kubeconfig cho GKE cluster
+            gcloud container clusters get-credentials "ight-cluster" --region "asia-southeast1"
+          '
+      env:
+        INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
+
+        
+    - name: Terraform Init and plan
       run: terraform init
 
     - name: Terraform Plan
