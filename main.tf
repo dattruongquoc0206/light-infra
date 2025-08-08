@@ -1,7 +1,7 @@
 provider "google" {
   project = var.project_id
   region  = var.region
-  credentials = file(var.credentials_file)
+  # no cred anymore, let terraform use session
 }
 
 resource "google_container_cluster" "primary" {
