@@ -92,16 +92,12 @@ jobs:
             
             # 4. Lấy kubeconfig cho GKE cluster
             gcloud container clusters get-credentials "light-cluster" --region "asia-southeast1"
+            # 5. check kubeconfig
+            echo ~/.kube/config
           '
       env:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
 
-    - name: Generate kubeconfig for GKE
-      run: |
-        gcloud container clusters get-credentials light-cluster \
-          --region asia-southeast1 \
-          --project light-466908
-              
     - name: Terraform Init and plan
       run: terraform init
 
