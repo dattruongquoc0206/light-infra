@@ -96,7 +96,12 @@ jobs:
       env:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
 
-        
+    - name: Generate kubeconfig for GKE
+      run: |
+        gcloud container clusters get-credentials $GKE_CLUSTER_NAME \
+          --region $GCP_REGION \
+          --project $GCP_PROJECT_ID
+              
     - name: Terraform Init and plan
       run: terraform init
 
