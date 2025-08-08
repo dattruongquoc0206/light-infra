@@ -98,9 +98,9 @@ jobs:
 
     - name: Generate kubeconfig for GKE
       run: |
-        gcloud container clusters get-credentials $GKE_CLUSTER_NAME \
-          --region $GCP_REGION \
-          --project $GCP_PROJECT_ID
+        gcloud container clusters get-credentials light-cluster \
+          --region asia-southeast1 \
+          --project light-466908
               
     - name: Terraform Init and plan
       run: terraform init
