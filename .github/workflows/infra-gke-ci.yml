@@ -91,7 +91,7 @@ jobs:
             gcloud config set compute/region "asia-southeast1"
             
             # 4. Lấy kubeconfig cho GKE cluster
-            gcloud container clusters get-credentials "ight-cluster" --region "asia-southeast1"
+            gcloud container clusters get-credentials "light-cluster" --region "asia-southeast1"
           '
       env:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
