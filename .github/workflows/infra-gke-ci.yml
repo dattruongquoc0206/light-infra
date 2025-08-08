@@ -68,10 +68,13 @@ jobs:
         INFISICAL_TOKEN: ${{ secrets.INFISICAL_TOKEN }}
 
     - name: Terraform Init and plan
-      run: terraform init
-
-    - name: Terraform Plan
-      run: terraform plan -var-file="terraform.tfvars"
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: /tmp/key.json
+      run: |
+        terraform init
+        terraform plan -var-file="terraform.tfvars"
 
     - name: Terraform Apply
+      env:
+        GOOGLE_APPLICATION_CREDENTIALS: /tmp/key.json
       run: terraform apply -auto-approve -var-file="terraform.tfvars"
