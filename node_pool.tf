@@ -33,10 +33,12 @@ resource "google_container_node_pool" "api_pool" {
 resource "google_container_node_pool" "cicd_nodepool" {
   name       = "cicd-nodepool"
   cluster    = google_container_cluster.primary.name    
-  location   = "asia-southeast1-a"   
+  location   = var.region  
   node_count = 1
 
-  node_config {
+  node_locations = ["asia-southeast1-a"]
+  
+  node_config { 
     machine_type = "e2-medium"
     disk_size_gb = 20
     labels = {
