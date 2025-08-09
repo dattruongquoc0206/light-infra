@@ -42,16 +42,7 @@ resource "google_container_node_pool" "cicd_nodepool" {
   node_config { 
     machine_type = "e2-medium"
     disk_size_gb = 50
-/*
-    labels = {
-      role = "cicd"
-    }
-    taint {
-      key    = "namespace"
-      value  = "cicd_namespace"
-      effect = "NO_SCHEDULE"
-    }
-*/
+
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
     ]
