@@ -1,7 +1,7 @@
 provider "google" {
   project = var.project_id
   region  = var.region
-  # no cred anymore, let terraform use session
+  # no cred anymore, let terraform use ADC 
 }
 
 resource "google_container_cluster" "primary" {

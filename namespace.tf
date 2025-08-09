@@ -10,3 +10,12 @@ resource "kubernetes_namespace" "api" {
     }
   }
 }
+
+resource "kubernetes_namespace" "cicd_namespace"{
+  metadata {
+    name = "cicd_namespace"
+    labels = {
+      purpose = "cicd"
+    }
+  }
+}

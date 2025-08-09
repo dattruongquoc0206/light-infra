@@ -9,9 +9,6 @@ jobs:
   terraform:
     name: Apply Terraform
     runs-on: ubuntu-latest
-
-    # env:
-    #   GOOGLE_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
     steps:
     - name: Checkout repo
       uses: actions/checkout@v4
@@ -42,7 +39,7 @@ jobs:
             echo "$GCP_SA_KEY" > /tmp/key.json
             export GOOGLE_APPLICATION_CREDENTIALS=/tmp/key.json
 
-            # 1. Auth GCP bằng SA key lấy từ Infisical
+            # 1. Auth GCP: access gcloud 
             gcloud auth activate-service-account --key-file=<(echo "$GCP_SA_KEY")
 
             # 2. Set project
@@ -51,7 +48,7 @@ jobs:
             # 3. Set region
             gcloud config set compute/region "asia-southeast1"
             
-            # 4. Lấy kubeconfig cho GKE cluster
+            # 4. Get kubeconfig for GKE cluster: kubectl <-> gke
             echo "Fetching kubeconfig for GKE cluster..."
             gcloud container clusters get-credentials "light-cluster" --region "asia-southeast1"
             
