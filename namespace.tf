@@ -11,9 +11,9 @@ resource "kubernetes_namespace" "api" {
   }
 }
 
-resource "kubernetes_namespace" "cicd_namespace"{
+resource "kubernetes_namespace" "cicd-namespace"{
   metadata {
-    name = "cicd_namespace"
+    name = "cicd-namespace"
     labels = {
       purpose = "cicd"
     }
