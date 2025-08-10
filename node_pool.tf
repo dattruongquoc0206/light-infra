@@ -36,9 +36,9 @@ resource "google_container_node_pool" "cicd_nodepool" {
   location   = var.region  
 
   node_count = 1
-
+  
   node_locations = ["asia-southeast1-a"]
-
+  
   node_config { 
     machine_type = "e2-medium"
     disk_size_gb = 50
