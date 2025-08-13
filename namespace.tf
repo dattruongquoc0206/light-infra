@@ -19,3 +19,12 @@ resource "kubernetes_namespace" "cicd-namespace"{
     }
   }
 }
+
+resource "kubernetes_namespace" "monitor-namespace"{
+  metadata {
+    name = "monitor-namespace"
+    leabels = {
+      purpose = "monitoring"
+    }
+  }
+}
