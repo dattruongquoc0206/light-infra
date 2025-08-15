@@ -52,7 +52,7 @@ resource "google_container_node_pool" "cicd_nodepool" {
     taint {
       key = "namespace"
       value = "cicd"
-      effect = "NO_SCHEDULE"
+      effect = "NO_SCHEDULE"  
     }
     oauth_scopes = [
       "https://www.googleapis.com/auth/cloud-platform"
