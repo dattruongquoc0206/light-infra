@@ -28,3 +28,12 @@ resource "kubernetes_namespace" "monitor-namespace"{
     }
   }
 }
+
+resource "kubernetes_namespace" "ingress-namepsace"{
+  metadata {
+    name = "ingress-namepsace"
+    labels = {
+      purpose = "ingress"
+    }
+  }
+}
