@@ -37,3 +37,11 @@ resource "kubernetes_namespace" "ingress-namespace"{
     }
   }
 }
+resource "kubernetes_namespace" "ingress-namespace-new"{
+  metadata {
+    name = "ingress-namespace-new"
+    labels = {
+      purpose = "ingress"
+    }
+  }
+}
