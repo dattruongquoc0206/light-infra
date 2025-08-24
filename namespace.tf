@@ -38,3 +38,12 @@ resource "kubernetes_namespace" "ingress-namespace-new"{
     }
   }
 }
+
+resource "kubernetes_namespace" "cicd-namespace-new"{
+  metadata {
+    name = "cicd-namespace-new"
+    labels = {
+      purpose = "cicd"
+    }
+  }
+}
