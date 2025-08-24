@@ -7,7 +7,7 @@ on:
 
 jobs:
   terraform:
-    name: Apply Terraform
+    name: Provision GKE Cluster job
     runs-on: ubuntu-latest
     steps:
     - name: Checkout repo

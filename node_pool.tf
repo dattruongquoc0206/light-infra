@@ -97,7 +97,7 @@ resource "google_container_node_pool" "ingress_nodepool_new" {
     disk_size_gb = 20
 
     labels = {
-      "namepsace" = "ingress-new"
+      "namespace" = "ingress-new"
     }
 
     taint {
