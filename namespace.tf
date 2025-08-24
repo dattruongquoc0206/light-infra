@@ -29,14 +29,7 @@ resource "kubernetes_namespace" "monitor-namespace"{
   }
 }
 
-resource "kubernetes_namespace" "ingress-namespace"{
-  metadata {
-    name = "ingress-namespace"
-    labels = {
-      purpose = "ingress"
-    }
-  }
-}
+
 resource "kubernetes_namespace" "ingress-namespace-new"{
   metadata {
     name = "ingress-namespace-new"

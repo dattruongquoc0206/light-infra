@@ -60,29 +60,6 @@ resource "google_container_node_pool" "cicd_nodepool" {
   }
 }
 
-resource "google_container_node_pool" "ingress_nodepool" {
-  name       = "ingress-nodepool"
-  cluster    = google_container_cluster.primary.name    
-  location   = var.region  
-
-  node_count = 1
-  
-  node_locations = ["asia-southeast1-b"]
-  
-  node_config { 
-    machine_type = "e2-medium"
-    disk_size_gb = 20
-
-    labels = {
-      "namepsace" = "ingress"
-    }
-
-    oauth_scopes = [
-      "https://www.googleapis.com/auth/cloud-platform"
-    ]
-  }
-}
-
 resource "google_container_node_pool" "ingress_nodepool_new" {
   name       = "ingress-nodepool-new"
   cluster    = google_container_cluster.primary.name    
