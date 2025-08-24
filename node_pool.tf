@@ -9,7 +9,7 @@ resource "google_container_node_pool" "api_pool" {
 
   node_config {
     machine_type = "e2-medium"
-    disk_size_gb = 50
+    disk_size_gb = 10
 
     labels = {
       "namespace" = "api"
@@ -79,6 +79,35 @@ resource "google_container_node_pool" "ingress_nodepool_new" {
 
     taint {
       key = "ingress_nodepool"
+      value = "new"
+      effect = "NO_SCHEDULE"  
+    }
+
+    oauth_scopes = [
+      "https://www.googleapis.com/auth/cloud-platform"
+    ]
+  }
+}
+
+resource "google_container_node_pool" "cicd_nodepool_new" {
+  name       = "cicd-nodepool-new"
+  cluster    = google_container_cluster.primary.name    
+  location   = var.region  
+
+  node_count = 1
+  
+  node_locations = ["asia-southeast1-a"]
+  
+  node_config { 
+    machine_type = "e2-medium"
+    disk_size_gb = 20
+
+    labels = {
+      "namespace" = "cicd-new"
+    }
+
+    taint {
+      key = "cicd_nodepool"
       value = "new"
       effect = "NO_SCHEDULE"  
     }
