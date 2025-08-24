@@ -84,7 +84,7 @@ resource "google_container_node_pool" "ingress_nodepool" {
 }
 
 resource "google_container_node_pool" "ingress_nodepool_new" {
-  name       = "ingress-nodepool_new"
+  name       = "ingress-nodepool-new"
   cluster    = google_container_cluster.primary.name    
   location   = var.region  
 
@@ -98,6 +98,12 @@ resource "google_container_node_pool" "ingress_nodepool_new" {
 
     labels = {
       "namepsace" = "ingress-new"
+    }
+
+    taint {
+      key = "ingress_nodepool"
+      value = "new"
+      effect = "NO_SCHEDULE"  
     }
 
     oauth_scopes = [
